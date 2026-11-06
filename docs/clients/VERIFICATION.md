@@ -4,11 +4,11 @@ This file records what was actually checked. Synthetic data is not a real ad acc
 
 | Check | Status |
 | --- | --- |
-| Core rules and invariants | Passed local gate (41/41 tests, TypeScript build) |
-| Synthetic Meta/Google response replay | Passed local gate (41/41 tests, TypeScript build) |
-| Seven MCP tools, in-memory SDK client | Passed local gate (41/41 tests, TypeScript build) |
-| Real stdio and Streamable HTTP transport | Passed local gate (41/41 tests, TypeScript build) |
-| OAuth discovery, PKCE, refresh and subject isolation | Passed local gate (41/41 tests, TypeScript build) |
+| Core rules and invariants | Passed local gate (63/63 tests, TypeScript build) |
+| Synthetic Meta/Google response replay | Passed local gate (63/63 tests, TypeScript build) |
+| Seven MCP tools, in-memory SDK client | Passed local gate (63/63 tests, TypeScript build) |
+| Real stdio and Streamable HTTP transport | Passed local gate (63/63 tests, TypeScript build) |
+| OAuth discovery, PKCE, refresh and subject isolation | Passed local gate (63/63 tests, TypeScript build) |
 | Claude Desktop / Code native UI screenshots | Follow-up: founder-run with a real ad account; needs authenticated client session |
 | ChatGPT native connector screenshot | Follow-up: founder-run with a real ad account; needs authenticated client session and public HTTPS host |
 | Grok native connector screenshot | Follow-up: founder-run with a real ad account; needs authenticated client session and public HTTPS host |
@@ -26,4 +26,6 @@ Release scope (2026-11-06): the live sandbox run and native-client screenshots a
 - [ ] Capture tool listing and a play in Grok's authenticated custom connector.
 - [ ] Confirm proposals remain unapplied; redact sensitive account details before publishing screenshots.
 
-Local release gate: `npm run check` passed on Node 22.23.4 (41 tests, zero failures). Real SDK clients exercised stdio and Streamable HTTP, OAuth code exchange/consent/PKCE/replay protection and subject isolation. Runtime `npm audit --omit=dev` reported zero vulnerabilities. Five synthetic fixture/play pairs are checked in under fixtures/accounts and examples.
+Local release gate: `npm run check` passed on Node 22.23.4 (63 tests, zero failures). Real SDK clients exercised stdio and Streamable HTTP, OAuth code exchange/consent/PKCE/replay protection and subject isolation. Runtime `npm audit --omit=dev` reported zero vulnerabilities. Five synthetic fixture/play pairs are checked in under fixtures/accounts and examples.
+
+Updated 2026-11-06 after the review fixes (Meta budget offsets, consent redirect matching): the offline gate passes 63/63 tests at main.
