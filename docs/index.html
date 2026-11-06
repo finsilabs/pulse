@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PULSE &middot; read-only ad-budget recommendations over MCP</title>
+<meta name="description" content="PULSE reads your Meta and Google Ads accounts and proposes daily budget moves inside Claude, ChatGPT or Grok. It never changes spend. MIT licensed, from Finsi Labs.">
+<link rel="canonical" href="https://finsilabs.github.io/pulse/">
+<meta property="og:title" content="PULSE &middot; read-only ad-budget recommendations over MCP">
+<meta property="og:description" content="Daily budget recommendations for the ad accounts you own, inside the AI client you already use. Never changes spend. MIT.">
+<meta property="og:url" content="https://finsilabs.github.io/pulse/">
+<meta property="og:type" content="website">
+<style>
+:root{--bg:#ffffff;--fg:#14171f;--muted:#5b6474;--line:#e3e7ee;--card:#f6f8fb;--accent:#106eea;--code:#0f172a;--codefg:#e2e8f0}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--muted:#9aa4b2;--line:#263040;--card:#151b24;--accent:#4c9bff;--code:#010409;--codefg:#e6edf3}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:860px;margin:0 auto;padding:40px 20px 64px}
+a{color:var(--accent)}
+header .by{font-size:14px;color:var(--muted);margin:0 0 28px}
+h1{font-size:40px;line-height:1.15;margin:0 0 12px;letter-spacing:-.02em}
+.lede{font-size:20px;color:var(--muted);margin:0 0 24px}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin:0 0 36px}
+.btn{display:inline-block;padding:10px 18px;border-radius:8px;border:1px solid var(--accent);text-decoration:none;font-weight:600}
+.btn.primary{background:var(--accent);color:#fff}
+.never{border:1px solid var(--line);border-left:4px solid var(--accent);background:var(--card);padding:14px 18px;border-radius:8px;margin:0 0 36px}
+h2{font-size:22px;margin:36px 0 12px}
+pre{background:var(--code);color:var(--codefg);padding:16px;border-radius:8px;overflow-x:auto;font-size:14px;line-height:1.5}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:600}
+td code{white-space:nowrap}
+ul{padding-left:20px}
+footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+@media (max-width:600px){h1{font-size:30px}.lede{font-size:18px}}
+</style>
+</head>
+<body>
+<main>
+<header>
+<p class="by">Open source from <a href="https://finsi.ai">Finsi Labs</a> &middot; MIT licensed</p>
+<h1>PULSE</h1>
+<p class="lede">Daily ad-budget recommendations for the Meta and Google Ads accounts you own, inside the AI client you already use.</p>
+<div class="cta">
+<a class="btn primary" href="https://github.com/finsilabs/pulse">View on GitHub</a>
+<a class="btn" href="https://github.com/finsilabs/pulse#quick-start">Quick start</a>
+</div>
+</header>
+
+<div class="never"><strong>PULSE never changes spend.</strong> There is no pause, mutate or apply tool. A proposal is a set of instructions you can carry out yourself in Ads Manager or Google Ads. Recording a move as &ldquo;applied&rdquo; records your report; it does not perform the action.</div>
+
+<h2>What you get</h2>
+<p>PULSE is an MCP server. It reads your campaigns, compares them and proposes where to scale or reduce daily budgets. Each move shows the observed window, conversions, CPA, ROAS, confidence and the reason, so your AI client can explain the numbers to you. PULSE itself makes no model calls.</p>
+<ul>
+<li>Works with Claude Code and Claude Desktop (local stdio), and with Claude connectors, ChatGPT and Grok (remote Streamable HTTP, self-hosted).</li>
+<li>Read-only grants: Meta <code>ads_read</code>; Google Ads restricted to tested read endpoints and fixed GAQL queries.</li>
+<li>Credentials stay on your machine under <code>~/.config/pulse</code> with owner-only permissions.</li>
+<li>No Finsi account, database, warehouse or model-provider key is needed.</li>
+</ul>
+
+<h2>Try it with synthetic data</h2>
+<pre><code>git clone https://github.com/finsilabs/pulse.git
+cd pulse
+npm ci
+npm run build
+node dist/index.js smoke --demo</code></pre>
+<p>Then connect your own accounts with <code>node dist/index.js login meta</code> or <code>login google</code>. See <a href="https://github.com/finsilabs/pulse/blob/main/docs/platform-auth.md">platform setup</a> and the <a href="https://github.com/finsilabs/pulse/blob/main/docs/clients/local.md">client install guides</a>.</p>
+
+<h2>Tools</h2>
+<table>
+<tr><th>Tool</th><th>What it returns</th></tr>
+<tr><td><code>pulse.accounts</code></td><td>Accounts your grant can see, with currency and timezone</td></tr>
+<tr><td><code>pulse.snapshot</code></td><td>Validated daily campaign metrics and observed budgets</td></tr>
+<tr><td><code>pulse.todays_play</code></td><td>Scale, shift, hold, watching and warnings</td></tr>
+<tr><td><code>pulse.explain_move</code></td><td>Evidence, window, target, cooldown and clamps for one campaign</td></tr>
+<tr><td><code>pulse.propose_move</code></td><td>An expiring action plan, always <code>applied: false</code></td></tr>
+<tr><td><code>pulse.config</code></td><td>Bounded targets, caps, protected campaigns and ceilings</td></tr>
+<tr><td><code>pulse.record_decision</code></td><td>Your reported applied or dismissed decision, for cooldowns</td></tr>
+</table>
+
+<h2>What has been verified</h2>
+<p>The offline gate passes: rules and invariants, replayed synthetic Meta and Google responses, all seven tools, real stdio and Streamable HTTP transports, and OAuth with PKCE. A live run against a real ad account and native-client screenshots are still to come. The <a href="https://github.com/finsilabs/pulse/blob/main/docs/clients/VERIFICATION.md">verification record</a> lists each check. These are test results, not a revenue-lift claim: validate every recommendation against your own business before you act on it.</p>
+
+<footer>
+<p>PULSE is open source under the <a href="https://github.com/finsilabs/pulse/blob/main/LICENSE">MIT license</a> and works on its own. It is built by <a href="https://finsi.ai">Finsi</a>; the commercial Finsi platform for ecommerce teams is at <a href="https://finsi.ai">finsi.ai</a>.</p>
+</footer>
+</main>
+</body>
+</html>

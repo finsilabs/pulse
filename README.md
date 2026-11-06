@@ -2,6 +2,8 @@
 
 **Daily ad-budget recommendations for the accounts you own, inside the AI client you already use.**
 
+Open source from [Finsi Labs](https://finsi.ai) under the MIT license. Website: <https://finsilabs.github.io/pulse/>
+
 PULSE reads Meta and Google Ads, compares campaigns, and proposes where to scale or reduce daily budgets. Each move carries the observed window, conversions, CPA, ROAS, confidence and reason. Your host model can explain the numbers; PULSE itself makes no model calls.
 
 **PULSE never changes spend.** There is no pause, mutate or apply tool. A proposal is a set of instructions for you to use in Ads Manager or Google Ads. Recording “applied” records your report; it does not perform the action.
@@ -108,3 +110,7 @@ const play = buildPlay(snapshot, defaultConfig(), {}, new Date());
 ```
 
 Build from source before importing. The library uses the same validation, clock, seed and proposal invariants as the MCP server.
+
+## About
+
+PULSE is built by [Finsi](https://finsi.ai) and released as open source. It runs on its own: no Finsi account is needed. Finsi's commercial platform for ecommerce teams is at [finsi.ai](https://finsi.ai).
