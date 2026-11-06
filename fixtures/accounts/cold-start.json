@@ -1,0 +1,516 @@
+{
+  "snapshot_id": "synthetic-07a8858a95309738",
+  "account": "meta:synthetic",
+  "platform": "meta",
+  "currency": "USD",
+  "timezone": "UTC",
+  "fetched_at": "2026-10-02T12:00:00.000Z",
+  "start_date": "2026-09-01",
+  "end_date": "2026-09-30",
+  "campaigns": [
+    {
+      "id": "example-a",
+      "name": "Synthetic example-a",
+      "status": "active",
+      "start_date": "2025-01-01",
+      "currency": "USD",
+      "daily_budget": 100,
+      "budget_kind": "daily",
+      "learning": "stable",
+      "metrics": [
+        {
+          "date": "2026-09-01",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 4,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-02",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 4,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-03",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 4,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-04",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 4,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-05",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 4,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-06",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 4,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-07",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 4,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-08",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 4,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-09",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 4,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-10",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 4,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-11",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 4,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-12",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 4,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-13",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 4,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-14",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 4,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-15",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 4,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-16",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 4,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-17",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 4,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-18",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 4,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-19",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 4,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-20",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 4,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-21",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 4,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-22",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 4,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-23",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 4,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-24",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 4,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-25",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 4,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-26",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 4,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-27",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 4,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-28",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 4,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-29",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 4,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-30",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 4,
+          "impressions": 1000,
+          "clicks": 25
+        }
+      ]
+    },
+    {
+      "id": "example-b",
+      "name": "Synthetic example-b",
+      "status": "active",
+      "start_date": "2025-01-01",
+      "currency": "USD",
+      "daily_budget": 100,
+      "budget_kind": "daily",
+      "learning": "stable",
+      "metrics": [
+        {
+          "date": "2026-09-01",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 1.8,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-02",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 1.8,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-03",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 1.8,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-04",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 1.8,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-05",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 1.8,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-06",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 1.8,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-07",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 1.8,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-08",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 1.8,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-09",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 1.8,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-10",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 1.8,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-11",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 1.8,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-12",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 1.8,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-13",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 1.8,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-14",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 1.8,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-15",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 1.8,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-16",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 1.8,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-17",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 1.8,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-18",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 1.8,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-19",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 1.8,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-20",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 1.8,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-21",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 1.8,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-22",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 1.8,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-23",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 1.8,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-24",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 1.8,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-25",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 1.8,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-26",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 1.8,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-27",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 1.8,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-28",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 1.8,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-29",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 1.8,
+          "impressions": 1000,
+          "clicks": 25
+        },
+        {
+          "date": "2026-09-30",
+          "spend": 1,
+          "conversions": 2,
+          "revenue": 1.8,
+          "impressions": 1000,
+          "clicks": 25
+        }
+      ]
+    }
+  ]
+}

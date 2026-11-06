@@ -1,0 +1,115 @@
+{
+  "play_id": "0e7e0283ba52faecadb5f31f",
+  "snapshot_id": "synthetic-7cc66774bf7e5471",
+  "account": "meta:synthetic",
+  "platform": "meta",
+  "currency": "USD",
+  "basis": "roas",
+  "generated_at": "2026-10-02T12:00:00.000Z",
+  "expires_at": "2026-10-04T12:00:00.000Z",
+  "scale": [],
+  "shift": [],
+  "hold": [
+    {
+      "campaign_id": "example-a",
+      "campaign_name": "Synthetic example-a",
+      "platform": "meta",
+      "currency": "USD",
+      "from": 100,
+      "to": 100,
+      "current_daily_budget": {
+        "value": 100,
+        "currency": "USD",
+        "basis": "observed"
+      },
+      "proposed_daily_budget": {
+        "value": 100,
+        "currency": "USD",
+        "basis": "estimated"
+      },
+      "change_pct": 0,
+      "confidence": 0.35,
+      "marginal_return_per_extra_unit": null,
+      "source": "curve",
+      "rule_id": null,
+      "reason": "Budget is shared, lifetime, unknown or not an actionable positive campaign daily budget.",
+      "evidence": {
+        "spend": 1500,
+        "revenue": 6000,
+        "conversions": 60,
+        "spend7": 350,
+        "revenue7": 1400,
+        "cpa": 25,
+        "roas": 4,
+        "days_active": 638,
+        "confidence": 0.35,
+        "cold_start": false,
+        "window": {
+          "start_date": "2026-09-01",
+          "end_date": "2026-09-30"
+        },
+        "target_cpa": 50,
+        "target_roas": 2,
+        "cooldown": null,
+        "clamps": []
+      },
+      "budget_kind": "shared"
+    },
+    {
+      "campaign_id": "example-b",
+      "campaign_name": "Synthetic example-b",
+      "platform": "meta",
+      "currency": "USD",
+      "from": 100,
+      "to": 100,
+      "current_daily_budget": {
+        "value": 100,
+        "currency": "USD",
+        "basis": "observed"
+      },
+      "proposed_daily_budget": {
+        "value": 100,
+        "currency": "USD",
+        "basis": "estimated"
+      },
+      "change_pct": 0,
+      "confidence": 0.35,
+      "marginal_return_per_extra_unit": null,
+      "source": "curve",
+      "rule_id": null,
+      "reason": "Budget is shared, lifetime, unknown or not an actionable positive campaign daily budget.",
+      "evidence": {
+        "spend": 1500,
+        "revenue": 2700,
+        "conversions": 60,
+        "spend7": 350,
+        "revenue7": 630,
+        "cpa": 25,
+        "roas": 1.8,
+        "days_active": 638,
+        "confidence": 0.35,
+        "cold_start": false,
+        "window": {
+          "start_date": "2026-09-01",
+          "end_date": "2026-09-30"
+        },
+        "target_cpa": 50,
+        "target_roas": 2,
+        "cooldown": null,
+        "clamps": []
+      },
+      "budget_kind": "shared"
+    }
+  ],
+  "watching": [],
+  "warnings": [
+    "ROAS uses platform-attributed revenue, not incrementality or lifetime value. Targets and floors use the account currency.",
+    "Shared-budget identifiers are unavailable; the reported campaign budget sum may repeat shared pools. Do not treat it as a verified account spending cap."
+  ],
+  "total_budget": {
+    "value": 200,
+    "currency": "USD",
+    "basis": "observed"
+  },
+  "synthetic": true
+}

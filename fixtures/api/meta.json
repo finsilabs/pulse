@@ -1,0 +1,58 @@
+{
+  "provenance": "Generated synthetic API response shapes. No real account recording.",
+  "adaccounts": {
+    "data": [
+      {
+        "id": "act_123",
+        "name": "Synthetic Meta",
+        "currency": "JPY",
+        "timezone_name": "Asia/Tokyo"
+      }
+    ]
+  },
+  "campaigns": {
+    "data": [
+      {
+        "id": "c1",
+        "name": "Synthetic campaign",
+        "status": "ACTIVE",
+        "start_time": "2026-01-01T00:00:00Z",
+        "daily_budget": "1000"
+      }
+    ]
+  },
+  "adsets": {
+    "data": []
+  },
+  "insights": {
+    "data": [
+      {
+        "campaign_id": "c1",
+        "date_start": "2026-09-30",
+        "spend": "300",
+        "impressions": "1000",
+        "clicks": "20",
+        "actions": [
+          {
+            "action_type": "purchase",
+            "value": "2"
+          },
+          {
+            "action_type": "omni_purchase",
+            "value": "2"
+          }
+        ],
+        "action_values": [
+          {
+            "action_type": "purchase",
+            "value": "600"
+          },
+          {
+            "action_type": "omni_purchase",
+            "value": "600"
+          }
+        ]
+      }
+    ]
+  }
+}

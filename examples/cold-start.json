@@ -1,0 +1,114 @@
+{
+  "play_id": "2322ab3c587736bc29912704",
+  "snapshot_id": "synthetic-07a8858a95309738",
+  "account": "meta:synthetic",
+  "platform": "meta",
+  "currency": "USD",
+  "basis": "roas",
+  "generated_at": "2026-10-02T12:00:00.000Z",
+  "expires_at": "2026-10-04T12:00:00.000Z",
+  "scale": [],
+  "shift": [],
+  "hold": [
+    {
+      "campaign_id": "example-a",
+      "campaign_name": "Synthetic example-a",
+      "platform": "meta",
+      "currency": "USD",
+      "from": 100,
+      "to": 100,
+      "current_daily_budget": {
+        "value": 100,
+        "currency": "USD",
+        "basis": "observed"
+      },
+      "proposed_daily_budget": {
+        "value": 100,
+        "currency": "USD",
+        "basis": "estimated"
+      },
+      "change_pct": 0,
+      "confidence": 0.006999999999999999,
+      "marginal_return_per_extra_unit": 0.09509359154766679,
+      "source": "curve",
+      "rule_id": null,
+      "reason": "Move below 1%: hold.",
+      "evidence": {
+        "spend": 30,
+        "revenue": 120,
+        "conversions": 60,
+        "spend7": 7,
+        "revenue7": 28,
+        "cpa": 0.5,
+        "roas": 4,
+        "days_active": 638,
+        "confidence": 0.006999999999999999,
+        "cold_start": true,
+        "window": {
+          "start_date": "2026-09-01",
+          "end_date": "2026-09-30"
+        },
+        "target_cpa": 50,
+        "target_roas": 2,
+        "cooldown": null,
+        "clamps": []
+      },
+      "budget_kind": "daily"
+    },
+    {
+      "campaign_id": "example-b",
+      "campaign_name": "Synthetic example-b",
+      "platform": "meta",
+      "currency": "USD",
+      "from": 100,
+      "to": 100,
+      "current_daily_budget": {
+        "value": 100,
+        "currency": "USD",
+        "basis": "observed"
+      },
+      "proposed_daily_budget": {
+        "value": 100,
+        "currency": "USD",
+        "basis": "estimated"
+      },
+      "change_pct": 0,
+      "confidence": 0.006999999999999999,
+      "marginal_return_per_extra_unit": 0.09509359154766679,
+      "source": "curve",
+      "rule_id": null,
+      "reason": "Move below 1%: hold.",
+      "evidence": {
+        "spend": 30,
+        "revenue": 53.99999999999997,
+        "conversions": 60,
+        "spend7": 7,
+        "revenue7": 12.600000000000001,
+        "cpa": 0.5,
+        "roas": 1.7999999999999992,
+        "days_active": 638,
+        "confidence": 0.006999999999999999,
+        "cold_start": true,
+        "window": {
+          "start_date": "2026-09-01",
+          "end_date": "2026-09-30"
+        },
+        "target_cpa": 50,
+        "target_roas": 2,
+        "cooldown": null,
+        "clamps": []
+      },
+      "budget_kind": "daily"
+    }
+  ],
+  "watching": [],
+  "warnings": [
+    "ROAS uses platform-attributed revenue, not incrementality or lifetime value. Targets and floors use the account currency."
+  ],
+  "total_budget": {
+    "value": 200,
+    "currency": "USD",
+    "basis": "observed"
+  },
+  "synthetic": true
+}

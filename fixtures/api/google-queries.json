@@ -1,0 +1,5 @@
+{
+  "provenance": "Synthetic fixed-query contract; no customer query recording.",
+  "customer": "SELECT customer.id, customer.descriptive_name, customer.currency_code, customer.time_zone, customer.manager FROM customer",
+  "campaign": "SELECT campaign.id, campaign.name, campaign.status, campaign.start_date, campaign_budget.id, campaign_budget.amount_micros, campaign_budget.explicitly_shared, campaign_budget.type, campaign_budget.period, campaign_budget.total_amount_micros, segments.date, metrics.cost_micros, metrics.impressions, metrics.clicks, metrics.conversions, metrics.conversions_value FROM campaign WHERE segments.date BETWEEN '2026-09-01' AND '2026-09-30'"
+}
