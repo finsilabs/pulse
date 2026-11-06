@@ -42,12 +42,15 @@ export class MetaAdapter {
       rows.push(...page.data);
       if (!page.paging?.next) break;
       url = new URL(page.paging.next);
+      // Meta may return paging.next on a newer API version than the one we pinned.
+      const unversioned = (path: string) => path.replace(/^\/v\d+\.\d+\//, "/");
       if (
         url.hostname !== "graph.facebook.com" ||
-        url.pathname !== expectedPath ||
+        unversioned(url.pathname) !== unversioned(expectedPath) ||
         url.searchParams.has("method")
       )
         throw Error("Meta pagination URL refused");
+      url.pathname = expectedPath;
     }
     return rows;
   }

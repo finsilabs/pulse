@@ -54,6 +54,42 @@ test("Meta pagination refuses arbitrary hosts without sending credentials", asyn
   await assert.rejects(() => a.accounts());
   assert.equal(calls, 1);
 });
+test("Meta pagination follows a next link on a newer API version, pinned to ours", async () => {
+  // Live 2026-11-06: Meta returned paging.next on v24.0 for a v23.0 request.
+  const seen: string[] = [];
+  const a = new MetaAdapter(
+    { access_token: "synthetic-not-a-token" },
+    async (u) => {
+      const url = new URL(String(u));
+      seen.push(url.pathname);
+      if (url.searchParams.get("after") === "p2") return Response.json({ data: [{ id: "act_2", name: "B", currency: "USD", timezone_name: "UTC" }] });
+      const next = new URL(url.href);
+      next.pathname = url.pathname.replace(/^\/v\d+\.\d+\//, "/v99.0/");
+      next.searchParams.set("after", "p2");
+      return Response.json({ data: [{ id: "act_1", name: "A", currency: "USD", timezone_name: "UTC" }], paging: { next: next.href } });
+    },
+    now,
+  );
+  const accounts = await a.accounts();
+  assert.equal(accounts.length, 2);
+  assert.equal(seen.length, 2);
+  assert.equal(seen[1], seen[0]);
+});
+test("Meta pagination still refuses a next link to another path", async () => {
+  let calls = 0;
+  const a = new MetaAdapter(
+    { access_token: "synthetic-not-a-token" },
+    async (u) => {
+      calls++;
+      const next = new URL(String(u));
+      next.pathname = next.pathname.replace(/[^/]+$/, "users");
+      return Response.json({ data: [], paging: { next: next.href } });
+    },
+    now,
+  );
+  await assert.rejects(() => a.accounts());
+  assert.equal(calls, 1);
+});
 test("Meta ad-set budgets aggregate and unknown learning stays unknown", async () => {
   const a = new MetaAdapter(
     { access_token: "synthetic-not-a-token" },
