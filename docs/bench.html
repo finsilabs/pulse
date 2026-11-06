@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PULSE benchmark &middot; freeform Claude vs PULSE</title>
+<meta name="description" content="PULSE reads your Meta and Google Ads accounts and proposes daily budget moves inside Claude, ChatGPT or Grok. It never changes spend. MIT licensed, from Finsi Labs.">
+<link rel="canonical" href="https://finsilabs.github.io/pulse/bench.html">
+<meta property="og:title" content="PULSE &middot; read-only ad-budget recommendations over MCP">
+<meta property="og:description" content="Daily budget recommendations for the ad accounts you own, inside the AI client you already use. Never changes spend. MIT.">
+<meta property="og:url" content="https://finsilabs.github.io/pulse/bench.html">
+<meta property="og:type" content="website">
+<style>
+:root{--bg:#ffffff;--fg:#14171f;--muted:#5b6474;--line:#e3e7ee;--card:#f6f8fb;--accent:#106eea;--code:#0f172a;--codefg:#e2e8f0}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--muted:#9aa4b2;--line:#263040;--card:#151b24;--accent:#4c9bff;--code:#010409;--codefg:#e6edf3}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:860px;margin:0 auto;padding:40px 20px 64px}
+a{color:var(--accent)}
+header .by{font-size:14px;color:var(--muted);margin:0 0 28px}
+h1{font-size:40px;line-height:1.15;margin:0 0 12px;letter-spacing:-.02em}
+.lede{font-size:20px;color:var(--muted);margin:0 0 24px}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin:0 0 36px}
+.btn{display:inline-block;padding:10px 18px;border-radius:8px;border:1px solid var(--accent);text-decoration:none;font-weight:600}
+.btn.primary{background:var(--accent);color:#fff}
+.never{border:1px solid var(--line);border-left:4px solid var(--accent);background:var(--card);padding:14px 18px;border-radius:8px;margin:0 0 36px}
+h2{font-size:22px;margin:36px 0 12px}
+pre{background:var(--code);color:var(--codefg);padding:16px;border-radius:8px;overflow-x:auto;font-size:14px;line-height:1.5}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:600}
+td code{white-space:nowrap}
+ul{padding-left:20px}
+footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+@media (max-width:600px){h1{font-size:30px}.lede{font-size:18px}}
+</style>
+</head>
+<body>
+<main>
+<p class="by"><a href="./">PULSE</a> &middot; open source from <a href="https://finsi.ai">Finsi Labs</a></p>
+<h1>Freeform Claude vs PULSE</h1>
+<p class="lede">Same synthetic data, 10 runs each. Run 2026-11-06.</p>
+<h2>Question</h2>
+<p>If you connect a model straight to the ad API and ask it for today's budgets, how do its answers compare with PULSE's play on the same data?</p>
+<h2>Method</h2>
+<ul>
+<li>Data: the five synthetic accounts in <code>fixtures/accounts/</code> (healthy, learning, shared-budget, cold-start, stop-loss). Each has two campaigns at a $100/day budget. PULSE's plays for them are in <code>examples/</code>.</li>
+<li>Model: <code>global.anthropic.claude-sonnet-5-5</code> on Amazon Bedrock (Converse API), default sampling, no tools, <code>maxTokens</code> 2000.</li>
+<li>Prompt (<code>run.py</code>): the account, currency, timezone, fetch time, window, and for each campaign its status, start date, daily budget, budget kind (daily or shared), learning status and the 30 daily metric rows. That is everything PULSE's core receives. The instruction is neutral: "Recommend today's daily budget for each campaign. Reply with JSON only." No PULSE rules are in the prompt.</li>
+<li>10 independent runs per fixture, 50 calls. All 50 replies parsed. Raw replies (text only) are in <code>raw/</code>. <code>analyze.py</code> produces <code>results.json</code> and <code>results.txt</code>.</li>
+<li>Spend: 179,850 input and 63,587 output tokens, about $1.50 at list price.</li>
+</ul>
+<h2>Results</h2>
+<table>
+<tr><th>Fixture</th><th>PULSE</th><th>Freeform Claude, 10 runs</th></tr>
+<tr><td>healthy (ROAS 4.0 vs 1.8)</td><td>120 / 80</td><td>A: 100 &times;8, 120 &times;2. B: 40 to 80, 4 distinct answers; &gt;20% cut in 9 runs</td></tr>
+<tr><td>learning (both campaigns learning)</td><td>hold / hold</td><td>B cut in 10/10 runs (to 40 to 80); &gt;20% in 4 runs</td></tr>
+<tr><td>shared-budget</td><td>hold / hold</td><td>budgets moved in 6/10 runs; in 5 runs the combined budget fell from 200 to 100</td></tr>
+<tr><td>cold-start ($30 spend in 30 days)</td><td>hold / hold</td><td>B cut to 5 to 10 in 7/10 runs (-90% to -95%)</td></tr>
+<tr><td>stop-loss (0 conversions on $1,500)</td><td>A 100 to 50 (rule PR1), B 100 to 120</td><td>A cut 75% to 100% in 10/10 runs (0 to 25, 4 distinct answers); B never scaled</td></tr>
+</table>
+<ul>
+<li>40 of 100 freeform budget decisions moved a budget by more than 20%. PULSE's only move over 20% is its documented stop-loss rule (PR1, -50%).</li>
+<li>One campaign received up to 4 different budgets across 10 identical runs. PULSE's core has no model calls, an explicit seed and an explicit clock, so its play does not vary.</li>
+</ul>
+<h2>What this does not show</h2>
+<ul>
+<li>Freeform Claude never exceeded the total budget, and it leaned toward cutting.</li>
+<li>On the healthy fixture Claude often noted that each campaign spends $50/day against a $100 budget, so raising the budget may add nothing. PULSE still proposes +20%. That point is fair against PULSE.</li>
+<li>The fixtures contain no missing values, so "missing numbers never become zeros" was not tested here.</li>
+<li>Synthetic data, one model, one neutral prompt. This is a consistency and guardrail comparison, not a revenue-lift claim, and not a live-account result.</li>
+</ul>
+<p>Everything needed to check these numbers is in the repository: <a href="https://github.com/finsilabs/pulse/tree/main/bench">bench/</a> holds the prompt and runner (<code>run.py</code>), all 50 raw replies, the analysis (<code>analyze.py</code>) and its output.</p>
+<footer><p>PULSE is open source under the MIT license and works on its own. Built by <a href="https://finsi.ai">Finsi</a>; the commercial Finsi platform is at <a href="https://finsi.ai">finsi.ai</a>.</p></footer>
+</main>
+</body>
+</html>
