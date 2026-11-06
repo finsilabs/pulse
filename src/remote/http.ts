@@ -111,7 +111,7 @@ export function createHttpApp(options: Options) {
       c = await auth.clientsStore.getClient(p.client_id);
     if (!c) throw Error("Unknown client");
     const redirect = new URL(p.params.redirectUri);
-    if (!c.redirect_uris.includes(redirect.href))
+    if (!c.redirect_uris.includes(p.params.redirectUri))
       throw Error("Redirect changed");
     const s = new SubjectStore(store, p.subject),
       grants = Credentials.parse(await s.read("credentials", {}));
@@ -199,7 +199,7 @@ export function createHttpApp(options: Options) {
       client = await auth.clientsStore.getClient(p.client_id);
     if (!client) throw Error("Unknown client");
     const target = new URL(p.params.redirectUri);
-    if (!client.redirect_uris.includes(target.href))
+    if (!client.redirect_uris.includes(p.params.redirectUri))
       throw Error("Redirect changed");
     if (p.params.state) target.searchParams.set("state", p.params.state);
     if (req.body.decision === "deny") {

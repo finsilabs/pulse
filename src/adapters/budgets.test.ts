@@ -229,9 +229,11 @@ for (const [currency, raw, expected] of [
   }
 }
 test("Meta refuses unsupported currency even with no campaigns", async () => {
-  const adapter = new MetaAdapter({ access_token: "synthetic" }, async () =>
-    Response.json({ data: [] }),
-  );
+  let requests = 0;
+  const adapter = new MetaAdapter({ access_token: "synthetic" }, async () => {
+    requests++;
+    return Response.json({ data: [] });
+  });
   await assert.rejects(
     () =>
       adapter.snapshot(
@@ -245,4 +247,5 @@ test("Meta refuses unsupported currency even with no campaigns", async () => {
       ),
     /Unsupported Meta currency/,
   );
+  assert.equal(requests, 0);
 });
