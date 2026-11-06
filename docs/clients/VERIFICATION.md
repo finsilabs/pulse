@@ -12,7 +12,7 @@ This file records what was actually checked. Synthetic data is not a real ad acc
 | Claude Desktop / Code native UI screenshots | Follow-up: founder-run with a real ad account; needs authenticated client session |
 | ChatGPT native connector screenshot | Follow-up: founder-run with a real ad account; needs authenticated client session and public HTTPS host |
 | Grok native connector screenshot | Follow-up: founder-run with a real ad account; needs authenticated client session and public HTTPS host |
-| Maintainer-owned ad sandbox live smoke | Follow-up: founder-run with a real ad account; no maintainer sandbox credentials exist |
+| Live read-only smoke, Meta | Passed 2026-11-06 on five real ad accounts with the account owner's consent: one empty account, three active accounts (plays in 2.7 to 5.9 s) and one 163-campaign account (14 s) after the pagination fix below. Read-only `smoke`; nothing was changed in any account. Google Ads live smoke still pending. |
 
 No installed client config is modified by `npm test`. No ad-platform credentials are required by the offline gate. The live command is documented separately; never substitute a merchant's connected token for a maintainer's sandbox grant.
 
@@ -29,3 +29,5 @@ Release scope (2026-11-06): the live sandbox run and native-client screenshots a
 Local release gate: `npm run check` passed on Node 22.23.4 (63 tests, zero failures). Real SDK clients exercised stdio and Streamable HTTP, OAuth code exchange/consent/PKCE/replay protection and subject isolation. Runtime `npm audit --omit=dev` reported zero vulnerabilities. Five synthetic fixture/play pairs are checked in under fixtures/accounts and examples.
 
 Updated 2026-11-06 after the review fixes (Meta budget offsets, consent redirect matching): the offline gate passes 63/63 tests at main.
+
+Live finding 2026-11-06: Meta returned `paging.next` on API v24.0 for a v23.0 request, and the exact-path check refused page 2, so every account with more than one page failed. Fixed in `fix: follow Meta pagination links on a newer API version` (reviewed before merge); a next link to another host or path is still refused.
