@@ -59,6 +59,18 @@ footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);font-si
 <li>No Finsi account, database, warehouse or model-provider key is needed.</li>
 </ul>
 
+<h2>Why not just ask Claude to read the API?</h2>
+<p>You can. The difference is what decides the number. With PULSE, a tested, deterministic core computes every move; your AI client explains it. Asked freeform, the model computes the move itself, differently from one run to the next.</p>
+<ul>
+<li><strong>Same input, same answer.</strong> The recommendation core has no model calls and an explicit seed and clock, so a play can be re-run and audited.</li>
+<li><strong>A fixed, honest window.</strong> 30 days ending two days before today, so late-arriving conversions do not make yesterday look broken. Missing numbers stay missing; they never become zeros.</li>
+<li><strong>Moves are capped.</strong> Curve moves are damped by confidence and capped at 20%; proposals never exceed your total budget, and rounding never adds money.</li>
+<li><strong>It knows when not to move.</strong> Learning campaigns, shared or lifetime budgets, thin data and campaigns you protect are held, with the reason stated.</li>
+<li><strong>Money is exact.</strong> Each amount carries its currency, Meta budget offsets follow Meta's published table, and thresholds use your account currency.</li>
+<li><strong>Nothing can execute.</strong> There is no write tool. Proposals expire after 48 hours and are always <code>applied: false</code>.</li>
+</ul>
+<p>One concrete case from the repository's synthetic fixtures: four accounts report the <em>same</em> 30-day ROAS for their two campaigns, 4.00 and 1.80. PULSE gives four different answers. On the stable account it moves +20% / &minus;20%. With both campaigns in learning it holds both, because a bigger move would restart learning. On shared budgets it holds both, because moving one moves the pool. With only $30 of spend it holds both, because the move is under 1%. A budget split in proportion to ROAS would move about 38% each way in all four cases. The rules and their sources are in <a href="https://github.com/finsilabs/pulse/blob/main/DESIGN.md">DESIGN.md</a>.</p>
+
 <h2>Try it with synthetic data</h2>
 <pre><code>git clone https://github.com/finsilabs/pulse.git
 cd pulse
