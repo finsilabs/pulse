@@ -96,6 +96,9 @@ export interface CampaignHistory {
 }
 export type History = Record<string, CampaignHistory>;
 export function minorUnits(currency: string): number {
+  // ISO 4217 lists PKR with 2 minor digits; some ICU/CLDR versions use 0.
+  // Source: SIX (ISO maintenance agency), list-one.xml, currency 586.
+  if (currency === "PKR") return 2;
   return (
     new Intl.NumberFormat("en", {
       style: "currency",

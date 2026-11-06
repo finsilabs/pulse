@@ -1,12 +1,17 @@
 import { randomUUID } from "node:crypto";
-import {
-  AccountSnapshot,
-  type Account,
-  minorUnits,
-  windowFor,
-} from "../core/snapshot.js";
+import { AccountSnapshot, type Account, windowFor } from "../core/snapshot.js";
 import type { Grant } from "./credentials.js";
 import { jsonRequest, number, type Fetch } from "./http.js";
+// Marketing API budget units, not ISO currency precision. Source (2026-11-06):
+// https://developers.facebook.com/docs/marketing-api/currencies/
+const budgetOffsets = new Map<string, number>([
+  ..."CLP COP CRC HUF ISK IDR JPY KRW PYG TWD VND"
+    .split(" ")
+    .map((c): [string, number] => [c, 1]),
+  ..."DZD ARS AUD BHD BDT BOB BGN BRL GBP CAD CNY HRK CZK DKK EGP EUR GTQ HNL HKD INR ILS JOD KES LVL LTL MOP MYR MXN NZD NIO NGN NOK PKR PEN PHP PLN QAR RON RUB SAR RSD SGD SKK ZAR SEK CHF THB TRY AED UAH USD UYU VEF FBZ VES"
+    .split(" ")
+    .map((c): [string, number] => [c, 100]),
+]);
 export class MetaAdapter {
   constructor(
     private grant: Grant,
@@ -63,6 +68,8 @@ export class MetaAdapter {
   async snapshot(account: Account, days: number): Promise<AccountSnapshot> {
     const id = account.account.slice(5);
     if (!/^act_\d+$/.test(id)) throw Error("Invalid Meta account");
+    const factor = budgetOffsets.get(account.currency);
+    if (factor === undefined) throw Error("Unsupported Meta currency");
     const window = windowFor(days, this.now, account.timezone),
       campaigns = await this.list(id + "/campaigns", {
         fields:
@@ -106,7 +113,6 @@ export class MetaAdapter {
             (s) => s.campaign_id === c.id && s.effective_status === "ACTIVE",
           ),
           states = activeSets.map((s) => s.learning_stage_info?.status);
-        const factor = 10 ** minorUnits(account.currency);
         const daily =
           c.daily_budget !== undefined && number(c.daily_budget) > 0
             ? number(c.daily_budget) / factor

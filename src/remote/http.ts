@@ -110,6 +110,9 @@ export function createHttpApp(options: Options) {
       p = await pending(req, ticket),
       c = await auth.clientsStore.getClient(p.client_id);
     if (!c) throw Error("Unknown client");
+    const redirect = new URL(p.params.redirectUri);
+    if (!c.redirect_uris.includes(redirect.href))
+      throw Error("Redirect changed");
     const s = new SubjectStore(store, p.subject),
       grants = Credentials.parse(await s.read("credentials", {}));
     res
@@ -117,7 +120,17 @@ export function createHttpApp(options: Options) {
       .send(
         '<!doctype html><html lang="en"><meta charset="utf-8"><title>Connect PULSE</title><style>body{font:18px/1.5 system-ui;max-width:650px;margin:60px auto;padding:20px}a,button{display:inline-block;margin:10px;padding:12px}button{font:inherit}</style><h1>Connect your ad accounts</h1><p>Client: ' +
           esc(c.client_name ?? c.client_id) +
-          "</p><p>PULSE reads your account metrics and suggests budgets. It never changes your ads. Google’s grant is broad; PULSE restricts its implementation to reads. This host stores your grants encrypted.</p><p>" +
+          "</p><p>" +
+          (auth.isPinnedClient(c.client_id)
+            ? "Operator-pinned client. Client ID: <code>" +
+              esc(c.client_id) +
+              "</code>"
+            : "<strong>Unverified client</strong>. This name is self-reported; it does not verify who operates this client.") +
+          "</p><h2>Account read access will go to <strong>" +
+          esc(redirect.host) +
+          "</strong></h2><p>Requested redirect URI: <code>" +
+          esc(p.params.redirectUri) +
+          "</code></p><p>Approve only if you recognize and trust this destination.</p><p>PULSE reads your account metrics and suggests budgets. It never changes your ads. Google’s grant is broad; PULSE restricts its implementation to reads. This host stores your grants encrypted.</p><p>" +
           esc(grants.meta ? "Meta connected. " : "") +
           esc(grants.google ? "Google connected." : "") +
           "</p>" +

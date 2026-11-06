@@ -169,3 +169,80 @@ test("missing Meta campaign status is unknown rather than fabricated archived", 
     "unknown",
   );
 });
+
+// Literal expectations from Meta's published Marketing API currency offsets.
+for (const [currency, raw, expected] of [
+  ["TWD", "30000", 30000],
+  ["CRC", "30000", 30000],
+  ["BHD", "5000", 50],
+  ["JOD", "5000", 50],
+  ["PKR", "500000", 5000],
+  ["USD", "5000", 50],
+  ["JPY", "5000", 5000],
+] as const) {
+  for (const source of ["campaign", "adsets"] as const) {
+    test(`Meta ${currency} ${source} budget uses provider offset`, async () => {
+      const adapter = new MetaAdapter(
+        { access_token: "synthetic" },
+        async (u) =>
+          Response.json({
+            data: String(u).includes("/campaigns")
+              ? [
+                  {
+                    id: "x",
+                    status: "ACTIVE",
+                    start_time: "2026-01-01",
+                    ...(source === "campaign" ? { daily_budget: raw } : {}),
+                  },
+                ]
+              : String(u).includes("/adsets") && source === "adsets"
+                ? [
+                    {
+                      campaign_id: "x",
+                      effective_status: "ACTIVE",
+                      daily_budget: raw,
+                    },
+                    {
+                      campaign_id: "x",
+                      effective_status: "ACTIVE",
+                      daily_budget: raw,
+                    },
+                    {
+                      campaign_id: "x",
+                      effective_status: "PAUSED",
+                      daily_budget: raw,
+                    },
+                  ]
+                : [],
+          }),
+        new Date("2026-10-02T12:00:00Z"),
+      );
+      const snapshot = await adapter.snapshot(
+        { ...account, platform: "meta", account: "meta:act_123", currency },
+        30,
+      );
+      assert.equal(
+        snapshot.campaigns[0]?.daily_budget,
+        expected * (source === "adsets" ? 2 : 1),
+      );
+    });
+  }
+}
+test("Meta refuses unsupported currency even with no campaigns", async () => {
+  const adapter = new MetaAdapter({ access_token: "synthetic" }, async () =>
+    Response.json({ data: [] }),
+  );
+  await assert.rejects(
+    () =>
+      adapter.snapshot(
+        {
+          ...account,
+          platform: "meta",
+          account: "meta:act_123",
+          currency: "ZZZ",
+        },
+        30,
+      ),
+    /Unsupported Meta currency/,
+  );
+});

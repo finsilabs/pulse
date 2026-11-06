@@ -35,9 +35,11 @@ The SDK owns stdio and Streamable HTTP framing and OAuth endpoint validation. Th
 
 ## Platform adapters
 
+Meta budget fields use its published [Marketing API currency offsets](https://developers.facebook.com/docs/marketing-api/currencies/) (1 or 100), independently of ISO monetary rounding. The adapter refuses currencies outside that table. PKR monetary rounding explicitly preserves its two ISO 4217 minor digits, including on ICU versions that default to zero.
+
 Only adapters contact ad-platform endpoints. Meta uses GET with `ads_read`; Google uses fixed GAQL reads and customer listing. Google has **no read-only scope**, so writes are absent from the client and request contracts are tested. No arbitrary URL, query or account identifier is accepted from MCP callers. Account selection must match accounts discovered from the current subject's grants.
 
-Local credentials are owner-only files (directory 0700, files 0600). Loopback OAuth uses a random state and Google PKCE, verifies the actual loopback callback and times out. Remote grants are encrypted with AES-256-GCM, separated by subject, with a host-supplied key. OAuth client tokens are distinct from upstream platform tokens. Authorization requires explicit consent, S256 PKCE, registered redirect URIs and resource binding. Refresh tokens rotate. Cookies protect the browser grant/consent session; upstream OAuth state is single-use. No secrets are logged or returned through MCP.
+Local credentials are owner-only files (directory 0700, files 0600). Loopback OAuth uses a random state and Google PKCE, verifies the actual loopback callback and times out. Remote grants are encrypted with AES-256-GCM, separated by subject, with a host-supplied key. OAuth client tokens are distinct from upstream platform tokens. Authorization requires explicit consent, S256 PKCE, registered redirect URIs and resource binding. The consent screen marks dynamically registered client names as unverified and shows the requested redirect host and full URI before approval. Operator-pinned clients are labeled separately with their HTTPS metadata client ID; no trust is inferred from a self-reported name. Refresh tokens rotate. Cookies protect the browser grant/consent session; upstream OAuth state is single-use. No secrets are logged or returned through MCP.
 
 ## Tests and distribution
 

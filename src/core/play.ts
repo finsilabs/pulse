@@ -3,6 +3,7 @@ import {
   AccountSnapshot,
   calendarDate,
   money,
+  minorUnits,
   type Campaign,
   type History,
   type CampaignHistory,
@@ -329,12 +330,7 @@ export function buildPlay(
           proposed > current &&
           proposed > current * (1 + cfg.daily_increase_cap_pct)
         ) {
-          const unit =
-            10 **
-            (new Intl.NumberFormat("en", {
-              style: "currency",
-              currency: s.currency,
-            }).resolvedOptions().maximumFractionDigits ?? 2);
+          const unit = 10 ** minorUnits(s.currency);
           proposed =
             Math.floor(current * (1 + cfg.daily_increase_cap_pct) * unit) /
             unit;
@@ -415,12 +411,7 @@ export function buildPlay(
     .sort((a, b) => a.confidence - b.confidence)) {
     if (excess <= 0) break;
     const cut = Math.min(excess, r.to! - r.from!);
-    const precision =
-      10 **
-      (new Intl.NumberFormat("en", {
-        style: "currency",
-        currency: s.currency,
-      }).resolvedOptions().maximumFractionDigits ?? 2);
+    const precision = 10 ** minorUnits(s.currency);
     const target = Math.max(
       r.from!,
       Math.floor((r.to! - cut) * precision) / precision,

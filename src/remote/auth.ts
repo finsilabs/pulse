@@ -61,7 +61,7 @@ export class PulseAuth implements OAuthServerProvider {
   constructor(
     readonly baseUrl: URL,
     readonly store: EncryptedStore,
-    pinned: OAuthClientInformationFull[] = [],
+    private readonly pinned: OAuthClientInformationFull[] = [],
   ) {
     this.resource = new URL("/mcp", baseUrl);
     for (const client of pinned) {
@@ -92,6 +92,9 @@ export class PulseAuth implements OAuthServerProvider {
         return c;
       },
     };
+  }
+  isPinnedClient(id: string): boolean {
+    return this.pinned.some((client) => client.client_id === id);
   }
   private validate(client: OAuthClientInformationFull, p: AuthorizationParams) {
     if (
