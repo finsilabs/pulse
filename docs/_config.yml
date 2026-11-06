@@ -1,0 +1,26 @@
+title: PULSE
+description: Read-only ad-budget recommendations over MCP. Never changes spend. MIT licensed, from Finsi Labs.
+url: https://finsilabs.github.io
+baseurl: /pulse
+repo: https://github.com/finsilabs/pulse
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+plugins:
+  - jekyll-relative-links
+  - jekyll-optional-front-matter
+  - jekyll-titles-from-headings
+relative_links:
+  enabled: true
+  collections: false
+titles_from_headings:
+  enabled: true
+  strip_title: true
+defaults:
+  - scope: { path: "" }
+    values: { layout: default, section: docs }
+docs_nav:
+  - { group: Install, items: [ { title: "Local clients", url: "/clients/local.html" }, { title: "Remote clients", url: "/clients/remote.html" }, { title: "Platform credentials", url: "/platform-auth.html" }, { title: "Self-hosting", url: "/remote.html" } ] }
+  - { group: Evidence, items: [ { title: "Verification record", url: "/clients/VERIFICATION.html" }, { title: "Benchmark", url: "/bench.html" } ] }
+  - { group: Project, items: [ { title: "Adding the next agent", url: "/next-agent.html" } ] }

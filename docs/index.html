@@ -1,103 +1,137 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PULSE &middot; read-only ad-budget recommendations over MCP</title>
-<meta name="description" content="PULSE reads your Meta and Google Ads accounts and proposes daily budget moves inside Claude, ChatGPT or Grok. It never changes spend. MIT licensed, from Finsi Labs.">
-<link rel="canonical" href="https://finsilabs.github.io/pulse/">
-<meta property="og:title" content="PULSE &middot; read-only ad-budget recommendations over MCP">
-<meta property="og:description" content="Daily budget recommendations for the ad accounts you own, inside the AI client you already use. Never changes spend. MIT.">
-<meta property="og:url" content="https://finsilabs.github.io/pulse/">
-<meta property="og:type" content="website">
-<style>
-:root{--bg:#ffffff;--fg:#14171f;--muted:#5b6474;--line:#e3e7ee;--card:#f6f8fb;--accent:#106eea;--code:#0f172a;--codefg:#e2e8f0}
-@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--muted:#9aa4b2;--line:#263040;--card:#151b24;--accent:#4c9bff;--code:#010409;--codefg:#e6edf3}}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-main{max-width:860px;margin:0 auto;padding:40px 20px 64px}
-a{color:var(--accent)}
-header .by{font-size:14px;color:var(--muted);margin:0 0 28px}
-h1{font-size:40px;line-height:1.15;margin:0 0 12px;letter-spacing:-.02em}
-.lede{font-size:20px;color:var(--muted);margin:0 0 24px}
-.cta{display:flex;flex-wrap:wrap;gap:12px;margin:0 0 36px}
-.btn{display:inline-block;padding:10px 18px;border-radius:8px;border:1px solid var(--accent);text-decoration:none;font-weight:600}
-.btn.primary{background:var(--accent);color:#fff}
-.never{border:1px solid var(--line);border-left:4px solid var(--accent);background:var(--card);padding:14px 18px;border-radius:8px;margin:0 0 36px}
-h2{font-size:22px;margin:36px 0 12px}
-pre{background:var(--code);color:var(--codefg);padding:16px;border-radius:8px;overflow-x:auto;font-size:14px;line-height:1.5}
-code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
-table{width:100%;border-collapse:collapse;font-size:15px}
-th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
-th{color:var(--muted);font-weight:600}
-td code{white-space:nowrap}
-ul{padding-left:20px}
-footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
-@media (max-width:600px){h1{font-size:30px}.lede{font-size:18px}}
-</style>
-</head>
-<body>
-<main>
-<header>
-<p class="by">Open source from <a href="https://finsi.ai">Finsi Labs</a> &middot; MIT licensed</p>
-<h1>PULSE</h1>
-<p class="lede">Daily ad-budget recommendations for the Meta and Google Ads accounts you own, inside the AI client you already use.</p>
-<div class="cta">
-<a class="btn primary" href="https://github.com/finsilabs/pulse">View on GitHub</a>
-<a class="btn" href="https://github.com/finsilabs/pulse#quick-start">Quick start</a>
-</div>
-</header>
+---
+title: PULSE
+section: home
+description: PULSE reads your Meta and Google Ads accounts and proposes daily budget moves inside Claude, ChatGPT or Grok. It never changes spend. MIT licensed, from Finsi Labs.
+---
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">Open source MCP server &middot; MIT</p>
+      <h1>Daily budget moves for your own ad accounts, proposed and never applied</h1>
+      <p class="lede">PULSE reads Meta and Google Ads, compares your campaigns and writes a budget plan with its evidence. You read it in Claude, ChatGPT or Grok, and you make the change yourself.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="{{ '/clients/local.html' | relative_url }}">Get started</a>
+        <a class="btn" href="{{ site.repo }}">Source on GitHub</a>
+      </div>
+    </div>
+    <figure class="statement" aria-labelledby="stmt-title">
+      <div class="statement-head">
+        <div>
+          <p class="statement-title" id="stmt-title">Today's play, synthetic healthy account</p>
+          <p class="statement-meta">Meta &middot; USD &middot; window 2026-09-01 to 09-30</p>
+        </div>
+        <span class="stamp">applied: false</span>
+      </div>
+      <div class="table-scroll">
+      <table>
+        <thead><tr><th>Campaign</th><th class="num">Daily budget</th><th class="num">Proposed</th><th class="num">ROAS 30d</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="camp">example-a<span class="why">Damped marginal-ROAS allocation, capped at the 20% move limit</span></td>
+            <td class="num">$100</td><td class="num up">$120 &uarr;</td><td class="num">4.00</td>
+          </tr>
+          <tr>
+            <td class="camp">example-b<span class="why">Damped marginal-ROAS allocation, capped at the 20% move limit</span></td>
+            <td class="num">$100</td><td class="num down">$80 &darr;</td><td class="num">1.80</td>
+          </tr>
+        </tbody>
+        <tfoot><tr><td>Total</td><td class="num">$200</td><td class="num">$200</td><td class="num">conf. 0.35</td></tr></tfoot>
+      </table>
+      </div>
+      <p class="why-once">Both moves: damped marginal-ROAS allocation, capped at the 20% move limit. Confidence 0.35.</p>
+      <figcaption class="statement-foot">Real output from <a href="{{ site.repo }}/blob/main/examples/healthy.json">examples/healthy.json</a>. The proposal expires after 48 hours.</figcaption>
+    </figure>
+  </div>
+</section>
 
-<div class="never"><strong>PULSE never changes spend.</strong> There is no pause, mutate or apply tool. A proposal is a set of instructions you can carry out yourself in Ads Manager or Google Ads. Recording a move as &ldquo;applied&rdquo; records your report; it does not perform the action.</div>
+<section class="band">
+  <div class="wrap band-grid">
+    <h2>It cannot touch your spend</h2>
+    <div>
+      <p class="never"><strong>There is no pause, mutate or apply tool.</strong> A proposal is a set of instructions you can carry out in Ads Manager or Google Ads. Recording a move as applied records your report; it does not perform the action.</p>
+    </div>
+  </div>
+</section>
 
-<h2>What you get</h2>
-<p>PULSE is an MCP server. It reads your campaigns, compares them and proposes where to scale or reduce daily budgets. Each move shows the observed window, conversions, CPA, ROAS, confidence and the reason, so your AI client can explain the numbers to you. PULSE itself makes no model calls.</p>
-<ul>
-<li>Works with Claude Code and Claude Desktop (local stdio), and with Claude connectors, ChatGPT and Grok (remote Streamable HTTP, self-hosted).</li>
-<li>Read-only grants: Meta <code>ads_read</code>; Google Ads restricted to tested read endpoints and fixed GAQL queries.</li>
-<li>Credentials stay on your machine under <code>~/.config/pulse</code> with owner-only permissions.</li>
-<li>No Finsi account, database, warehouse or model-provider key is needed.</li>
-</ul>
+<section class="band">
+  <div class="wrap band-grid">
+    <div>
+      <h2>What you get</h2>
+      <p class="band-note">An MCP server with seven tools. Your AI client explains the numbers; PULSE itself makes no model calls.</p>
+    </div>
+    <ul class="ruled">
+      <li><strong>Every move with its evidence</strong><span>Observed window, conversions, CPA, ROAS, confidence and the reason, for each campaign.</span></li>
+      <li><strong>Local or remote</strong><span>Claude Code and Claude Desktop over stdio; Claude connectors, ChatGPT and Grok over self-hosted Streamable HTTP.</span></li>
+      <li><strong>Read-only grants</strong><span>Meta <code>ads_read</code>. Google Ads restricted to tested read endpoints and fixed GAQL queries.</span></li>
+      <li><strong>Your machine, your keys</strong><span>Credentials stay under <code>~/.config/pulse</code> with owner-only permissions.</span></li>
+      <li><strong>Nothing else to sign up for</strong><span>No Finsi account, database, warehouse or model-provider key.</span></li>
+    </ul>
+  </div>
+</section>
 
-<h2>Why not just ask Claude to read the API?</h2>
-<p>You can. The difference is what decides the number. With PULSE, a tested, deterministic core computes every move; your AI client explains it. Asked freeform, the model computes the move itself, differently from one run to the next.</p>
-<ul>
-<li><strong>Same input, same answer.</strong> The recommendation core has no model calls and an explicit seed and clock, so a play can be re-run and audited.</li>
-<li><strong>A fixed, honest window.</strong> 30 days ending two days before today, so late-arriving conversions do not make yesterday look broken. Missing numbers stay missing; they never become zeros.</li>
-<li><strong>Moves are capped.</strong> Curve moves are damped by confidence and capped at 20%; proposals never exceed your total budget, and rounding never adds money.</li>
-<li><strong>It knows when not to move.</strong> Learning campaigns, shared or lifetime budgets, thin data and campaigns you protect are held, with the reason stated.</li>
-<li><strong>Money is exact.</strong> Each amount carries its currency, Meta budget offsets follow Meta's published table, and thresholds use your account currency.</li>
-<li><strong>Nothing can execute.</strong> There is no write tool. Proposals expire after 48 hours and are always <code>applied: false</code>.</li>
-</ul>
-<p>One concrete case from the repository's synthetic fixtures: four accounts report the <em>same</em> 30-day ROAS for their two campaigns, 4.00 and 1.80. PULSE gives four different answers. On the stable account it moves +20% / &minus;20%. With both campaigns in learning it holds both, because a bigger move would restart learning. On shared budgets it holds both, because moving one moves the pool. With only $30 of spend it holds both, because the move is under 1%. A budget split in proportion to ROAS would move about 38% each way in all four cases. The rules and their sources are in <a href="https://github.com/finsilabs/pulse/blob/main/DESIGN.md">DESIGN.md</a>.</p>
-<p>We also ran freeform Claude on the same five fixtures, 10 runs each: 40 of its 100 budget decisions moved a budget by more than 20%, and one campaign got up to 4 different budgets for identical input. <a href="bench.html">Benchmark method, results and caveats</a>.</p>
+<section class="band">
+  <div class="wrap band-grid">
+    <div>
+      <h2>Why not just ask Claude to read the API?</h2>
+      <p class="band-note">You can. The difference is what decides the number.</p>
+    </div>
+    <div>
+      <p>With PULSE, a tested, deterministic core computes every move and your AI client explains it. Asked freeform, the model computes the move itself, and can differ from one run to the next.</p>
+      <ul class="ruled">
+        <li><strong>Same input, same answer</strong><span>No model calls in the core, and an explicit seed and clock, so a play can be re-run and audited.</span></li>
+        <li><strong>A fixed, honest window</strong><span>30 days ending two days before today, so late conversions do not make yesterday look broken. Missing numbers stay missing; they never become zeros.</span></li>
+        <li><strong>Capped moves</strong><span>Curve moves are damped by confidence and capped at 20%. Proposals never exceed your total budget, and rounding never adds money.</span></li>
+        <li><strong>It knows when not to move</strong><span>Learning campaigns, shared or lifetime budgets, thin data and protected campaigns are held, with the reason stated.</span></li>
+        <li><strong>Exact money</strong><span>Each amount carries its currency, Meta budget offsets follow Meta's published table, and thresholds use your account currency.</span></li>
+      </ul>
+      <p class="after-list">Four synthetic accounts report the same 30-day ROAS for their two campaigns, 4.00 and 1.80, and PULSE gives four different answers: a capped move, a learning hold, a shared-budget hold and a thin-data hold. On the same five fixtures, 10 freeform Claude runs each, 40 of 100 budget decisions moved a budget by more than 20%. <a href="{{ '/bench.html' | relative_url }}">Read the benchmark, its method and its caveats</a>.</p>
+    </div>
+  </div>
+</section>
 
-<h2>Try it with synthetic data</h2>
+<section class="band">
+  <div class="wrap band-grid">
+    <div>
+      <h2>Try it with synthetic data</h2>
+      <p class="band-note">Node 22 or later. No credentials needed for the demo.</p>
+    </div>
+    <div>
 <pre><code>git clone https://github.com/finsilabs/pulse.git
 cd pulse
 npm ci
 npm run build
 node dist/index.js smoke --demo</code></pre>
-<p>Then connect your own accounts with <code>node dist/index.js login meta</code> or <code>login google</code>. See <a href="https://github.com/finsilabs/pulse/blob/main/docs/platform-auth.md">platform setup</a> and the <a href="https://github.com/finsilabs/pulse/blob/main/docs/clients/local.md">client install guides</a>.</p>
+      <p>Then connect your own accounts with <code>node dist/index.js login meta</code> or <code>login google</code>, following <a href="{{ '/platform-auth.html' | relative_url }}">platform credentials</a> and the <a href="{{ '/clients/local.html' | relative_url }}">client guides</a>.</p>
+    </div>
+  </div>
+</section>
 
-<h2>Tools</h2>
-<table>
-<tr><th>Tool</th><th>What it returns</th></tr>
-<tr><td><code>pulse.accounts</code></td><td>Accounts your grant can see, with currency and timezone</td></tr>
-<tr><td><code>pulse.snapshot</code></td><td>Validated daily campaign metrics and observed budgets</td></tr>
-<tr><td><code>pulse.todays_play</code></td><td>Scale, shift, hold, watching and warnings</td></tr>
-<tr><td><code>pulse.explain_move</code></td><td>Evidence, window, target, cooldown and clamps for one campaign</td></tr>
-<tr><td><code>pulse.propose_move</code></td><td>An expiring action plan, always <code>applied: false</code></td></tr>
-<tr><td><code>pulse.config</code></td><td>Bounded targets, caps, protected campaigns and ceilings</td></tr>
-<tr><td><code>pulse.record_decision</code></td><td>Your reported applied or dismissed decision, for cooldowns</td></tr>
-</table>
+<section class="band">
+  <div class="wrap band-grid">
+    <h2>Tools</h2>
+    <div class="table-scroll">
+      <table class="data">
+        <thead><tr><th>Tool</th><th>What it returns</th></tr></thead>
+        <tbody>
+          <tr><td><code>pulse.accounts</code></td><td>Accounts your grant can see, with currency and timezone</td></tr>
+          <tr><td><code>pulse.snapshot</code></td><td>Validated daily campaign metrics and observed budgets</td></tr>
+          <tr><td><code>pulse.todays_play</code></td><td>Scale, shift, hold, watching and warnings</td></tr>
+          <tr><td><code>pulse.explain_move</code></td><td>Evidence, window, target, cooldown and clamps for one campaign</td></tr>
+          <tr><td><code>pulse.propose_move</code></td><td>An expiring action plan, always <code>applied: false</code></td></tr>
+          <tr><td><code>pulse.config</code></td><td>Bounded targets, caps, protected campaigns and ceilings</td></tr>
+          <tr><td><code>pulse.record_decision</code></td><td>Your reported applied or dismissed decision, for cooldowns</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
 
-<h2>What has been verified</h2>
-<p>The offline gate passes: rules and invariants, replayed synthetic Meta and Google responses, all seven tools, real stdio and Streamable HTTP transports, and OAuth with PKCE. A read-only live smoke against five real Meta ad accounts passed on 2026-11-06 and nothing was changed in them; it also caught and fixed a Meta pagination bug. Google Ads live checks and native-client screenshots are still to come. The <a href="https://github.com/finsilabs/pulse/blob/main/docs/clients/VERIFICATION.md">verification record</a> lists each check. These are test results, not a revenue-lift claim: validate every recommendation against your own business before you act on it.</p>
-
-<footer>
-<p>PULSE is open source under the <a href="https://github.com/finsilabs/pulse/blob/main/LICENSE">MIT license</a> and works on its own. It is built by <a href="https://finsi.ai">Finsi</a>; the commercial Finsi platform for ecommerce teams is at <a href="https://finsi.ai">finsi.ai</a>.</p>
-</footer>
-</main>
-</body>
-</html>
+<section class="band">
+  <div class="wrap band-grid">
+    <h2>What has been verified</h2>
+    <div>
+      <p>The offline gate passes: rules and invariants, replayed synthetic Meta and Google responses, all seven tools, real stdio and Streamable HTTP transports, and OAuth with PKCE. A read-only live smoke against five real Meta ad accounts passed on 2026-11-06 and nothing was changed in them; it also caught and fixed a Meta pagination bug. Google Ads live checks and native-client screenshots are still to come.</p>
+      <p>These are test results, not a revenue-lift claim. Validate every recommendation against your own business before you act on it. <a href="{{ '/clients/VERIFICATION.html' | relative_url }}">See the verification record</a>.</p>
+    </div>
+  </div>
+</section>

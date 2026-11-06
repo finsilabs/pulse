@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% if page.url == "/" %}{% assign full_title = "PULSE &middot; read-only ad-budget recommendations over MCP" %}{% else %}{% assign full_title = page.title | append: " &middot; PULSE" %}{% endif %}
+<title>{{ full_title }}</title>
+<meta name="description" content="{{ page.description | default: site.description }}">
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+<meta property="og:title" content="{{ full_title }}">
+<meta property="og:description" content="{{ page.description | default: site.description }}">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=Newsreader:opsz,wght@6..72,400;6..72,500&amp;display=swap">
+<link rel="stylesheet" href="{{ '/assets/site.css' | relative_url }}">
+</head>
+<body class="section-{{ page.section }}">
+<a class="skip" href="#content">Skip to content</a>
+<header class="masthead">
+  <div class="wrap masthead-row">
+    <a class="wordmark" href="{{ '/' | relative_url }}" aria-label="PULSE home">PULSE<span class="wordmark-by">by Finsi Labs</span></a>
+    <nav class="topnav" aria-label="Primary">
+      <a href="{{ '/' | relative_url }}"{% if page.url == "/" %} aria-current="page"{% endif %}>Overview</a>
+      <a href="{{ '/clients/local.html' | relative_url }}"{% if page.section == "docs" %} aria-current="page"{% endif %}>Docs</a>
+      <a href="{{ '/bench.html' | relative_url }}"{% if page.url == "/bench.html" %} aria-current="page"{% endif %}>Benchmark</a>
+      <a href="{{ site.repo }}">GitHub</a>
+    </nav>
+  </div>
+</header>
+{% if page.section == "docs" %}
+<div class="wrap docs">
+  <nav class="docnav" aria-label="Documentation">
+    {% for g in site.docs_nav %}
+    <p class="docnav-group">{{ g.group }}</p>
+    <ul>{% for i in g.items %}<li><a href="{{ i.url | relative_url }}"{% if page.url == i.url %} aria-current="page"{% endif %}>{{ i.title }}</a></li>{% endfor %}</ul>
+    {% endfor %}
+    <p class="docnav-group">Source</p>
+    <ul><li><a href="{{ site.repo }}/blob/main/DESIGN.md">DESIGN.md</a></li><li><a href="{{ site.repo }}/blob/main/README.md">README</a></li></ul>
+  </nav>
+  <main id="content" class="prose">
+    <h1>{{ page.title }}</h1>
+    {{ content }}
+    <p class="edit"><a href="{{ site.repo }}/blob/main/docs/{{ page.path }}">View this page's source on GitHub</a></p>
+  </main>
+</div>
+{% else %}
+<main id="content">
+{{ content }}
+</main>
+{% endif %}
+<footer class="colophon">
+  <div class="wrap colophon-row">
+    <p>PULSE is open source under the <a href="{{ site.repo }}/blob/main/LICENSE">MIT license</a> and works on its own; no Finsi account is needed. Built by <a href="https://finsi.ai">Finsi</a>, whose commercial platform for ecommerce teams is at <a href="https://finsi.ai">finsi.ai</a>.</p>
+    <p class="colophon-links"><a href="{{ site.repo }}">Source</a><a href="{{ site.repo }}/blob/main/DESIGN.md">Design</a><a href="{{ '/clients/VERIFICATION.html' | relative_url }}">Verification</a><a href="{{ site.repo }}/blob/main/SECURITY.md">Security</a></p>
+  </div>
+</footer>
+</body>
+</html>
